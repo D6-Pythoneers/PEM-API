@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "tes"
+version = "0.1.0"
+description = "Teachers evaluations system"
+authors = ["Odeh <abuzaid163@hotmail.com>"]
+license = "ISC"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Django = "^3.2.9"
+djangorestframework = "^3.12.4"
+djangorestframework-simplejwt = "^5.0.0"
+whitenoise = "^5.3.0"
+django-cors-headers = "^3.10.0"
+gunicorn = "^20.1.0"
+django-environ = "^0.8.1"
+psycopg2-binary = "^2.9.2"
+fire = "^0.4.0"
+requests = "^2.26.0"
+mssql-django = "^1.1"
+
+[tool.poetry.dev-dependencies]
+black = "^21.11b1"
+flake8 = "^4.0.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

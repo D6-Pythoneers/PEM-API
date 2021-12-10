@@ -44,3 +44,11 @@ class Goals(models.Model):
 
     class Meta:
         db_table = 'Goals'
+
+class Recommendations(models.Model):
+    recommender_id = models.AutoField(primary_key=True)
+    evaluation = models.ForeignKey(Evaluations,on_delete=models.DO_NOTHING)
+    recommendation = models.TextField(db_collation='SQL_Latin1_General_CP1_CI_AS')
+
+    class Meta:
+        db_table = 'Recommendations'

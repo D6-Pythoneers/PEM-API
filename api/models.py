@@ -19,3 +19,17 @@ class Assesmentcategories(models.Model):
 
     class Meta:
         db_table = 'AssesmentCategories'
+
+class Evaluations(models.Model):
+    evaluation_id = models.AutoField(primary_key=True)
+    school = models.ForeignKey('Schools',on_delete=models.DO_NOTHING)
+    user = models.ForeignKey('User',on_delete=models.DO_NOTHING)
+    evaluated = models.BooleanField()
+    academic_year = models.DateTimeField()
+    created_by = models.TextField(db_collation='SQL_Latin1_General_CP1_CI_AS')
+    status = models.TextField(db_collation='SQL_Latin1_General_CP1_CI_AS')
+    max_score = models.IntegerField()
+    score = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'Evaluations'

@@ -69,3 +69,11 @@ class Schools(models.Model):
 
     class Meta:
         db_table = 'Schools'
+
+class Subcategories(models.Model):
+    sub_cat_id = models.AutoField(primary_key=True)
+    cat = models.ForeignKey(Assesmentcategories,on_delete=models.DO_NOTHING)
+    sub_cat = models.TextField(db_collation='SQL_Latin1_General_CP1_CI_AS')
+
+    class Meta:
+        db_table = 'SubCategories'

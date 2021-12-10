@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth import get_user_model
 # Create your models here.
 class Assesment(models.Model):
     assesment_id = models.AutoField(primary_key=True)
@@ -23,7 +23,7 @@ class Assesmentcategories(models.Model):
 class Evaluations(models.Model):
     evaluation_id = models.AutoField(primary_key=True)
     school = models.ForeignKey('Schools',on_delete=models.DO_NOTHING)
-    user = models.ForeignKey('User',on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(get_user_model(),on_delete=models.DO_NOTHING)
     evaluated = models.BooleanField()
     academic_year = models.DateTimeField()
     created_by = models.TextField(db_collation='SQL_Latin1_General_CP1_CI_AS')
@@ -62,7 +62,7 @@ class Roles(models.Model):
 
 class Schools(models.Model):
     school_id = models.AutoField(primary_key=True)
-    school_manager = models.ForeignKey('User',on_delete=models.DO_NOTHING, db_column='school_manager')
+    school_manager = models.ForeignKey(get_user_model(),on_delete=models.DO_NOTHING, db_column='school_manager')
     school_name = models.TextField(db_collation='SQL_Latin1_General_CP1_CI_AS')
     evaluated = models.BooleanField(blank=True, null=True)
     academic_year = models.DateTimeField()

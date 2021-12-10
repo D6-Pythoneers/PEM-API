@@ -52,3 +52,10 @@ class Recommendations(models.Model):
 
     class Meta:
         db_table = 'Recommendations'
+
+class Roles(models.Model):
+    role_id = models.AutoField(primary_key=True)
+    role_name = models.TextField(db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
+
+    class Meta:
+        db_table = 'Roles'

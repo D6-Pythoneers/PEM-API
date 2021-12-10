@@ -59,3 +59,13 @@ class Roles(models.Model):
 
     class Meta:
         db_table = 'Roles'
+
+class Schools(models.Model):
+    school_id = models.AutoField(primary_key=True)
+    school_manager = models.ForeignKey('User',on_delete=models.DO_NOTHING, db_column='school_manager')
+    school_name = models.TextField(db_collation='SQL_Latin1_General_CP1_CI_AS')
+    evaluated = models.BooleanField(blank=True, null=True)
+    academic_year = models.DateTimeField()
+
+    class Meta:
+        db_table = 'Schools'

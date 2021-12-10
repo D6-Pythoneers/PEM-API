@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+
 # Create your models here.
 class Assesment(models.Model):
     assesment_id = models.AutoField(primary_key=True)
@@ -53,12 +54,12 @@ class Recommendations(models.Model):
     class Meta:
         db_table = 'Recommendations'
 
-class Roles(models.Model):
-    role_id = models.AutoField(primary_key=True)
-    role_name = models.TextField(db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
+# class Roles(models.Model):
+#     role_id = models.AutoField(primary_key=True)
+#     role_name = models.TextField(db_collation='SQL_Latin1_General_CP1_CI_AS', blank=True, null=True)
 
-    class Meta:
-        db_table = 'Roles'
+#     class Meta:
+#         db_table = 'Roles'
 
 class Schools(models.Model):
     school_id = models.AutoField(primary_key=True)

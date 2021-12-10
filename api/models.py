@@ -33,3 +33,14 @@ class Evaluations(models.Model):
 
     class Meta:
         db_table = 'Evaluations'
+
+class Goals(models.Model):
+    goal_id = models.AutoField(primary_key=True)
+    evaluation = models.ForeignKey(Evaluations,on_delete=models.DO_NOTHING)
+    goal = models.TextField(db_collation='SQL_Latin1_General_CP1_CI_AS')
+    goal_result = models.TextField(db_collation='SQL_Latin1_General_CP1_CI_AS')
+    max_score = models.IntegerField()
+    score = models.IntegerField()
+
+    class Meta:
+        db_table = 'Goals'

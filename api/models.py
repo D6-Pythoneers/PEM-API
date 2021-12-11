@@ -1,3 +1,4 @@
+from re import S
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -73,6 +74,9 @@ class Schools(models.Model):
 
     class Meta:
         db_table = 'Schools'
+
+    def __str__(self):
+        return self.school_name
 
 class Subcategories(models.Model):
     sub_cat_id = models.AutoField(primary_key=True)

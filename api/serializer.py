@@ -31,3 +31,17 @@ class TeachersSerializer(serializers.ModelSerializer):
             "directorate",
             "last_login",
         )
+
+class ManagersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = (
+            "name",
+            "role",
+            "school_id",
+            "nid",
+            "eid",
+            "qualification",
+            "directorate",
+            "last_login",
+        )

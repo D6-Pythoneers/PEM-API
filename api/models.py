@@ -29,7 +29,7 @@ class Evaluations(models.Model):
     school = models.ForeignKey('Schools',on_delete=models.DO_NOTHING)
     user = models.ForeignKey(get_user_model(),on_delete=models.DO_NOTHING)
     evaluated = models.BooleanField()
-    academic_year = models.DateTimeField()
+    academic_year = models.CharField('ac year', max_length=4)
     created_by = models.TextField()
     status = models.TextField()
     max_score = models.IntegerField()
@@ -69,7 +69,7 @@ class Schools(models.Model):
     school_manager = models.ForeignKey(get_user_model(),on_delete=models.DO_NOTHING, db_column='school_manager')
     school_name = models.TextField()
     evaluated = models.BooleanField(blank=True, null=True)
-    academic_year = models.DateTimeField()
+    academic_year = models.CharField('ac year', max_length=4)
 
     class Meta:
         db_table = 'Schools'

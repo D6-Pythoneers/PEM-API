@@ -21,6 +21,9 @@ class Assesmentcategories(models.Model):
     class Meta:
         db_table = 'AssesmentCategories'
 
+    def __str__(self):
+            return self.category
+
 class Evaluations(models.Model):
     evaluation_id = models.AutoField(primary_key=True)
     school = models.ForeignKey('Schools',on_delete=models.DO_NOTHING)

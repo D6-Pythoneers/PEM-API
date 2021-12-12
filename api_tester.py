@@ -90,7 +90,7 @@ class ApiTester:
 
         return response.json()
 
-    def get_one_evaluation(self):
+    def get_one_evaluation(self,id):
         """get list of the resources for the given id from api
         Usage: python api_tester.py get_one_evaluations
 
@@ -98,7 +98,7 @@ class ApiTester:
         """
         access_token = self.fetch_tokens()[0]
 
-        url = f"{self.host}/evaluations/1"
+        url = f"{self.host}/evaluations/{id}"
 
         headers = {
             "Authorization": f"Bearer {access_token}",
@@ -126,7 +126,7 @@ class ApiTester:
 
         return response.json()
 
-    def get_one_goal(self):
+    def get_one_goal(self,id):
         """get list of the resources for the given id from api
         Usage: python api_tester.py get_one_goals
 
@@ -134,7 +134,7 @@ class ApiTester:
         """
         access_token = self.fetch_tokens()[0]
 
-        url = f"{self.host}/goals/1"
+        url = f"{self.host}/goals/{id}"
 
         headers = {
             "Authorization": f"Bearer {access_token}",
@@ -299,7 +299,39 @@ class ApiTester:
 
         return response.json()
 
-    
+    def update_evaluation(self):
+        """creates a resource in api
+
+        Usage:
+        python api_tester.py create_evaluation
+
+        Returns: JSON
+        """
+
+        access_token = self.fetch_tokens()[0]
+
+        url = f"{self.host}/evaluations/"
+
+        headers = {
+            "Authorization": f"Bearer {access_token}",
+        }
+        original = self.get_one_evaluation(2)
+        data = {
+            "evaluated": True or original["evaluated"],
+            "academic_year": "2020" or original["academic_year"],
+            "created by": "renad" or original["created by"],
+            "status":"20" or original["status"],
+            "max score": 20 or original["max score"],
+            "score":"15" or original["score"],
+            "school":3 or original["school"],
+            "user":3 or original["user"]
+        }
+
+        response = requests.post(url, json=data, headers=headers)
+
+        return response.json()
+
+
 
 if __name__ == "__main__":
     fire.Fire(ApiTester)

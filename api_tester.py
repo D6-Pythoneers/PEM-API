@@ -181,7 +181,7 @@ class ApiTester:
         """creates a resource in api
 
         Usage:
-        python api_tester.py create_assessment /
+        python api_tester.py create_assessment
 
         Returns: JSON
         """
@@ -209,7 +209,7 @@ class ApiTester:
         """creates a resource in api
 
         Usage:
-        python api_tester.py create_evaluation /
+        python api_tester.py create_evaluation
 
         Returns: JSON
         """
@@ -231,6 +231,35 @@ class ApiTester:
             "score":"18",
             "school":2,
             "user":2
+        }
+
+        response = requests.post(url, json=data, headers=headers)
+
+        return response.json()
+
+    def create_goal(self):
+        """creates a resource in api
+
+        Usage:
+        python api_tester.py create_goal
+
+        Returns: JSON
+        """
+
+        access_token = self.fetch_tokens()[0]
+
+        url = f"{self.host}/goals/"
+
+        headers = {
+            "Authorization": f"Bearer {access_token}",
+        }
+
+        data = {
+            "goal": "test",
+            "goal_result": "",
+            "max score": 20,
+            "score":"18",
+            "evaluation":3,
         }
 
         response = requests.post(url, json=data, headers=headers)

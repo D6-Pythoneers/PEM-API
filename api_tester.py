@@ -162,7 +162,7 @@ class ApiTester:
 
         return response.json()
 
-    def get_one_assesment(self):
+    def get_one_assesment(self,id):
         """get list of the resources for the given id from api
         Usage: python api_tester.py get_one_assesment
 
@@ -170,7 +170,7 @@ class ApiTester:
         """
         access_token = self.fetch_tokens()[0]
 
-        url = f"{self.host}/assesments/1"
+        url = f"{self.host}/assesments/{id}"
 
         headers = {
             "Authorization": f"Bearer {access_token}",
@@ -268,6 +268,38 @@ class ApiTester:
         response = requests.post(url, json=data, headers=headers)
 
         return response.json()
+
+    def update_assessment(self):
+        """creates a resource in api
+
+        Usage:
+        python api_tester.py create_assessment
+
+        Returns: JSON
+        """
+
+        access_token = self.fetch_tokens()[0]
+
+        url = f"{self.host}/assesments/2"
+
+        headers = {
+            "Authorization": f"Bearer {access_token}",
+        }
+        original = self.get_one_assesment(2)
+        print(self.get_assesments)
+        data = {
+            "indicator": "updated" or original["indicator"],
+            "first_evaluation": "NA" or original["first_evaluation"],
+            "final_evaluation": "NA" or original["final_evaluation"],
+            "score":"20" or original["score"],
+            "evaluation" : 3 or original["evaluation"],
+        }
+
+        response = requests.put(url, json=data, headers=headers)
+
+        return response.json()
+
+    
 
 if __name__ == "__main__":
     fire.Fire(ApiTester)

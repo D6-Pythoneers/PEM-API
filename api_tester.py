@@ -33,10 +33,9 @@ class ApiTester:
 
         return tokens
 
-
     def get_teachers(self):
         """get list of all resources from api
-        Usage: python api_tester.py get_all
+        Usage: python api_tester.py get_teachers
 
         Returns: JSON
         """
@@ -54,7 +53,7 @@ class ApiTester:
 
     def get_schools(self):
         """get list of all resources from api
-        Usage: python api_tester.py get_all
+        Usage: python api_tester.py get_schools
 
         Returns: JSON
         """
@@ -72,7 +71,7 @@ class ApiTester:
 
     def get_evaluations(self):
         """get list of all resources from api
-        Usage: python api_tester.py get_all
+        Usage: python api_tester.py get_evaluations
 
         Returns: JSON
         """
@@ -89,8 +88,8 @@ class ApiTester:
         return response.json()
 
     def get_one_evaluation(self):
-        """get list of all resources from api
-        Usage: python api_tester.py get_all
+        """get list of the resources for the given id from api
+        Usage: python api_tester.py get_one_evaluations
 
         Returns: JSON
         """
@@ -108,7 +107,7 @@ class ApiTester:
 
     def get_goals(self):
         """get list of all resources from api
-        Usage: python api_tester.py get_all
+        Usage: python api_tester.py get_goals
 
         Returns: JSON
         """
@@ -125,8 +124,8 @@ class ApiTester:
         return response.json()
 
     def get_one_goal(self):
-        """get list of all resources from api
-        Usage: python api_tester.py get_all
+        """get list of the resources for the given id from api
+        Usage: python api_tester.py get_one_goals
 
         Returns: JSON
         """
@@ -144,7 +143,7 @@ class ApiTester:
 
     def get_assesments(self):
         """get list of all resources from api
-        Usage: python api_tester.py get_all
+        Usage: python api_tester.py get_assesments
 
         Returns: JSON
         """
@@ -161,8 +160,8 @@ class ApiTester:
         return response.json()
 
     def get_one_assesment(self):
-        """get list of all resources from api
-        Usage: python api_tester.py get_all
+        """get list of the resources for the given id from api
+        Usage: python api_tester.py get_one_assesment
 
         Returns: JSON
         """
@@ -175,6 +174,35 @@ class ApiTester:
         }
 
         response = requests.get(url, headers=headers)
+
+        return response.json()
+
+    def create_assessment(self):
+        """creates a resource in api
+
+        Usage:
+        python api_tester.py create /
+            --name=required --description=optional --owner=optional
+
+        Returns: JSON
+        """
+
+        access_token = self.fetch_tokens()[0]
+
+        url = f"{self.host}/assesments/"
+
+        headers = {
+            "Authorization": f"Bearer {access_token}",
+        }
+
+        data = {
+            "indicator": "testing",
+            "first evaluation": "NA",
+            "final evaluation": "NA",
+            "score":"20",
+        }
+
+        response = requests.post(url, json=data, headers=headers)
 
         return response.json()
 

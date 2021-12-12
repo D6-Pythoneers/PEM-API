@@ -6,6 +6,7 @@ from .models import (
     Schools,
     Assesment,
     Assesmentcategories,
+    Goals,
     Evaluations)
 
 
@@ -36,12 +37,11 @@ class TeachersSerializer(serializers.ModelSerializer):
         )
 
 
-# class AssesmentSerializer(serializers.ModelSerializer):
+class AssesmentSerializer(serializers.ModelSerializer):
 
-#     class Meta:
-#         model = Assesment
-#         fields = ("indicator","first_evaluation","final_evaluation","score")
-
+    class Meta:
+        model = Assesment
+        fields = "__all__"
 
 # class AssesmentcategoriesSerializer(serializers.ModelSerializer):
 #       category = AssesmentSerializer(many=True)
@@ -52,5 +52,10 @@ class TeachersSerializer(serializers.ModelSerializer):
 class ManageEvaluationsSerializer(serializers.ModelSerializer):
       class Meta:
         model = Evaluations
+        fields = "__all__"
+
+class GoalsSerializer(serializers.ModelSerializer):
+      class Meta:
+        model = Goals
         fields = "__all__"
 

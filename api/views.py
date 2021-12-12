@@ -2,11 +2,13 @@ from rest_framework import generics
 
 from accounts.models import CustomUser
 
-from .models import Schools ,Evaluations
+from .models import Schools ,Evaluations, Assesment,Goals
 from .serializer import (
     SchoolsSerializer,
     TeachersSerializer,
     ManageEvaluationsSerializer,
+    AssesmentSerializer,
+    GoalsSerializer,
     )
 
 
@@ -20,13 +22,14 @@ class Teachers(generics.ListAPIView):
     serializer_class = TeachersSerializer
 
 
-# class Assesment(generics.ListAPIView):
-#     queryset = CustomUser.objects.filter(role="manager")
-#     serializer_class = AssesmentcategoriesSerializer
+class Assesment(generics.ListAPIView):
+    queryset = Assesment.objects.all()
+    serializer_class = AssesmentSerializer
 
 class ManageEvaluations(generics.ListCreateAPIView):
     queryset = Evaluations.objects.all()
     serializer_class = ManageEvaluationsSerializer
 
-
-
+class Goals(generics.ListCreateAPIView):
+    queryset = Goals.objects.all()
+    serializer_class = GoalsSerializer

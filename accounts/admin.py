@@ -1,20 +1,56 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
+from api.models import (
+    Assesment,
+    Assesmentcategories,
+    Evaluations,
+    Goals,
+    Recommendations,
+    Schools,
+    Subcategories,
+)
+
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 from .models import CustomUser
 
-from api.models import (
-    Assesment,Assesmentcategories,
-    Evaluations,Goals,
-    Schools,Recommendations,
-    Subcategories,
-    )
+
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     model = CustomUser
     form = CustomUserChangeForm
-    fieldsets = UserAdmin.fieldsets
+    fieldsets = (
+        (
+            None,
+            {
+                "fields": (
+                    "email",
+                    "name",
+                    "role",
+                    "school_id",
+                    "nid",
+                    "eid",
+                    "qualification",
+                    "directorate",
+                    "username",
+                    "password",
+                )
+            },
+        ),
+        (
+            ("Permissions"),
+            {
+                "fields": (
+                    "is_active",
+                    "is_staff",
+                    "is_superuser",
+                    "groups",
+                    "user_permissions",
+                ),
+            },
+        ),
+        (("Important dates"), {"fields": ("last_login", "date_joined")}),
+    )
     add_fieldsets = (
         (
             None,
@@ -35,6 +71,7 @@ class CustomUserAdmin(UserAdmin):
             },
         ),
     )
+    readonly_fields = ("last_login", "date_joined")
 
 
 admin.site.register(CustomUser, CustomUserAdmin)

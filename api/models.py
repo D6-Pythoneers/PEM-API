@@ -1,6 +1,8 @@
 from re import S
-from django.db import models
+
 from django.contrib.auth import get_user_model
+from django.db import models
+
 
 # Create your models here.
 class Assesment(models.Model):
@@ -29,11 +31,11 @@ class Evaluations(models.Model):
     evaluation_id = models.AutoField(primary_key=True)
     school = models.ForeignKey('Schools',on_delete=models.DO_NOTHING)
     user = models.ForeignKey(get_user_model(),on_delete=models.DO_NOTHING)
-    evaluated = models.BooleanField()
-    academic_year = models.CharField('academic year', max_length=4)
-    created_by = models.TextField()
-    status = models.TextField()
-    max_score = models.IntegerField()
+    evaluated = models.BooleanField(default=False)
+    academic_year = models.CharField('Academic Year', max_length=4)
+    created_by = models.TextField(blank=True, null=True)
+    status = models.TextField(blank=True, null=True)
+    max_score = models.IntegerField(blank=True, null=True)
     score = models.IntegerField(blank=True, null=True)
 
     class Meta:
@@ -43,9 +45,9 @@ class Goals(models.Model):
     goal_id = models.AutoField(primary_key=True)
     evaluation = models.ForeignKey(Evaluations,on_delete=models.DO_NOTHING)
     goal = models.TextField()
-    goal_result = models.TextField()
-    max_score = models.IntegerField()
-    score = models.IntegerField()
+    goal_result = models.TextField(blank=True, null=True)
+    max_score = models.IntegerField(blank=True, null=True)
+    score = models.IntegerField(blank=True, null=True)
 
     class Meta:
         db_table = 'Goals'

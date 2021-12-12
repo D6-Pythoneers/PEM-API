@@ -1,17 +1,20 @@
 import fire
 import requests
+import environ
 
-API_HOST = "https://pem-api.herokuapp.com"
-RESOURCE_URI = "/"
-USERNAME = "admin"
-PASSWORD = "Pass@123"
-
+env = environ.Env(
+    API_HOST = (str,"https://pem-api.herokuapp.com"),
+    RESOURCE_URI = (str,"/"),
+    USERNAME = (str,"admin"),
+    PASSWORD = (str,"Pass@123"),
+)
+environ.Env.read_env()
 
 class ApiTester:
 
     """CLI for testing API"""
 
-    def __init__(self, host=API_HOST):
+    def __init__(self, host=env.str("API_HOST")):
         self.host = host
 
     def fetch_tokens(self):
@@ -24,7 +27,7 @@ class ApiTester:
         token_url = f"{self.host}/api/token/"
 
         response = requests.post(
-            token_url, json={"username": USERNAME, "password": PASSWORD}
+            token_url, json={"username": env.str("USERNAME"), "password": env.str("PASSWORD")}
         )
 
         data = response.json()

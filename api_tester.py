@@ -88,6 +88,24 @@ class ApiTester:
 
         return response.json()
 
+    def get_one_evaluation(self):
+        """get list of all resources from api
+        Usage: python api_tester.py get_all
+
+        Returns: JSON
+        """
+        access_token = self.fetch_tokens()[0]
+
+        url = f"{self.host}/evaluations/1"
+
+        headers = {
+            "Authorization": f"Bearer {access_token}",
+        }
+
+        response = requests.get(url, headers=headers)
+
+        return response.json()
+
 if __name__ == "__main__":
     fire.Fire(ApiTester)
 

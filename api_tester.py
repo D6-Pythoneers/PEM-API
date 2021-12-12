@@ -331,7 +331,34 @@ class ApiTester:
 
         return response.json()
 
+    def update_goal(self):
+        """creates a resource in api
 
+        Usage:
+        python api_tester.py create_goal
+
+        Returns: JSON
+        """
+
+        access_token = self.fetch_tokens()[0]
+
+        url = f"{self.host}/goals/"
+
+        headers = {
+            "Authorization": f"Bearer {access_token}",
+        }
+        original = self.get_one_goal(1)
+        data = {
+            "goal": "test" or original["goal"],
+            "goal_result": "" or original["goal_result"],
+            "max score": 20 or original["max score"],
+            "score":"17" or original["score"],
+            "evaluation":3 or original["evaluation"],
+        }
+
+        response = requests.post(url, json=data, headers=headers)
+
+        return response.json()
 
 if __name__ == "__main__":
     fire.Fire(ApiTester)

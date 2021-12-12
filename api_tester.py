@@ -181,8 +181,7 @@ class ApiTester:
         """creates a resource in api
 
         Usage:
-        python api_tester.py create /
-            --name=required --description=optional --owner=optional
+        python api_tester.py create_assessment /
 
         Returns: JSON
         """
@@ -200,6 +199,38 @@ class ApiTester:
             "first evaluation": "NA",
             "final evaluation": "NA",
             "score":"20",
+        }
+
+        response = requests.post(url, json=data, headers=headers)
+
+        return response.json()
+
+    def create_evaluation(self):
+        """creates a resource in api
+
+        Usage:
+        python api_tester.py create_evaluation /
+
+        Returns: JSON
+        """
+
+        access_token = self.fetch_tokens()[0]
+
+        url = f"{self.host}/evaluations/"
+
+        headers = {
+            "Authorization": f"Bearer {access_token}",
+        }
+
+        data = {
+            "evaluated": False,
+            "academic_year": "NA",
+            "created by": "NA",
+            "status":"20",
+            "max score": 20,
+            "score":"18",
+            "school":2,
+            "user":2
         }
 
         response = requests.post(url, json=data, headers=headers)

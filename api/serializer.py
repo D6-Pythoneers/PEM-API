@@ -26,6 +26,7 @@ class TeachersSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = (
+            "id",
             "name",
             "role",
             "school_id",
